@@ -17,7 +17,7 @@ type Config struct {
 	Tasks []Item `json:"tasks"`
 }
 
-var config *Config
+var Conf *Config
 
 func init() {
 	fp, err := os.Open("./config.json")
@@ -32,7 +32,7 @@ func init() {
 		log.Fatal(err)
 	}
 
-	err = json.Unmarshal(data, &config)
+	err = json.Unmarshal(data, &Conf)
 
 	if err != nil {
 		log.Fatal(err)

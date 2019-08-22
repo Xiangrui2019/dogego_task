@@ -1,11 +1,11 @@
 package main
 
 import (
+	_ "dogego_task/conf"
 	"dogego_task/servers"
-	"fmt"
 )
 
 func main() {
-	server := servers.JobServer{}
-	fmt.Println(server)
+	server := servers.NewJobServer()
+	server.RegisterCronTask()
 }
