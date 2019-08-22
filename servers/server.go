@@ -3,10 +3,10 @@ package servers
 import (
 	"dogego_task/conf"
 	"fmt"
+	"net/http"
 	"time"
 
-	_ "github.com/levigross/grequests"
-
+	"github.com/levigross/grequests"
 	"github.com/robfig/cron"
 )
 
@@ -22,12 +22,13 @@ func NewJobServer() *JobServer {
 
 func (server *JobServer) Run(name string, callback_url string) {
 	from := time.Now().UnixNano()
+	resp, _ := grequests.Get(callback_url, nil)
 	to := time.Now().UnixNano()
 
-	if err != nil {
-		fmt.Printf("%s error: %dms\n", jobName, (to-from)/int64(time.Millisecond))
+	if resp.StatusCode != http.StatusOK {
+		fmt.Printf("任务 %s 运行失败: %dms\n", name, (to-from)/int64(time.Millisecond))
 	} else {
-		fmt.Printf("%s success: %dms\n", jobName, (to-from)/int64(time.Millisecond))
+		fmt.Printf("任务 %s 运行成功: %dms\n", name, (to-from)/int64(time.Millisecond))
 	}
 }
 
