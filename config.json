@@ -1,9 +1,9 @@
 {
     "tasks": [
         {
-            "name": "dsf",
-            "callback_url": "dfsfd",
-            "time": "dfs"
+            "name": "task",
+            "callback_url": "dsfdfdsfs://www.baifdu.com",
+            "time": "*/2 * * * *"
         }
     ]
 }

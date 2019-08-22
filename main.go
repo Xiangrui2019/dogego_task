@@ -12,4 +12,6 @@ func main() {
 
 	log.Println("Started cron tasks..")
 	server.CronServer.Start()
+	for {
+	}
 }

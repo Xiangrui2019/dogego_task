@@ -22,8 +22,13 @@ func NewJobServer() *JobServer {
 
 func (server *JobServer) Run(name string, callback_url string) {
 	from := time.Now().UnixNano()
-	resp, _ := grequests.Get(callback_url, nil)
+	resp, err := grequests.Get(callback_url, nil)
 	to := time.Now().UnixNano()
+
+	if err != nil {
+		fmt.Printf("任务 %s 运行失败: %dms\n", name, (to-from)/int64(time.Millisecond))
+		return
+	}
 
 	if resp.StatusCode != http.StatusOK {
 		fmt.Printf("任务 %s 运行失败: %dms\n", name, (to-from)/int64(time.Millisecond))
