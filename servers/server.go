@@ -3,6 +3,9 @@ package servers
 import (
 	"dogego_task/conf"
 	"fmt"
+	"time"
+
+	_ "github.com/levigross/grequests"
 
 	"github.com/robfig/cron"
 )
@@ -17,14 +20,21 @@ func NewJobServer() *JobServer {
 	}
 }
 
+func (server *JobServer) Run(name string, callback_url string) {
+	from := time.Now().UnixNano()
+	to := time.Now().UnixNano()
+
+	if err != nil {
+		fmt.Printf("%s error: %dms\n", jobName, (to-from)/int64(time.Millisecond))
+	} else {
+		fmt.Printf("%s success: %dms\n", jobName, (to-from)/int64(time.Millisecond))
+	}
+}
+
 func (server *JobServer) RegisterCronTask() error {
-	for x, v := range conf.Conf.Tasks {
-		fmt.Println(x, v)
+	for _, v := range conf.Conf.Tasks {
+		server.CronServer.AddFunc(v.Time, func() {})
 	}
 
 	return nil
-}
-
-func (server *JobServer) StartTasks() {
-
 }
