@@ -34,7 +34,7 @@ func (server *JobServer) Run(name string, callback_url string) {
 
 func (server *JobServer) RegisterCronTask() error {
 	for _, v := range conf.Conf.Tasks {
-		server.CronServer.AddFunc(v.Time, func() {})
+		server.CronServer.AddFunc(v.Time, func() { server.Run(v.Name, v.CallbackURL) })
 	}
 
 	return nil
