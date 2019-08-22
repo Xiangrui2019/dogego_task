@@ -8,7 +8,12 @@ import (
 
 func main() {
 	server := servers.NewJobServer()
-	server.RegisterCronTask()
+
+	err := server.RegisterCronTask()
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	log.Println("Started cron tasks..")
 	server.CronServer.Start()
