@@ -2,8 +2,8 @@
     "tasks": [
         {
             "name": "task",
-            "callback_url": "dsfdfdsfs://www.baifdu.com",
-            "time": "*/2 * * * *"
+            "callback_url": "http://localhost:3000/tasks/time",
+            "time": "*/60 * * * *"
         }
     ]
 }
