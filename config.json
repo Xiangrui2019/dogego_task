@@ -4,6 +4,11 @@
             "name": "task",
             "callback_url": "http://localhost:3000/tasks/time",
             "time": "*/60 * * * *"
+        },
+        {
+            "name": "time",
+            "callback_url": "http://localhost:3000/tasks/time",
+            "time": "*/1 * * * *"
         }
     ]
 }
