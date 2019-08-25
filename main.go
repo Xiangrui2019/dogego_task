@@ -8,6 +8,7 @@ import (
 
 func main() {
 	server := servers.NewJobServer()
+	channel := make(chan int)
 
 	err := server.RegisterCronTask()
 
@@ -18,6 +19,5 @@ func main() {
 	log.Println("Started cron tasks..")
 	server.CronServer.Start()
 
-	for {
-	}
+	<-channel
 }
